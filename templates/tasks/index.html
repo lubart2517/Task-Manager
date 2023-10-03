@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Tasks management service</h1>
+    {% if teams %}
+    <ul>
+      {% for team in teams.all %}
+        <li>
+          <a href="{% url "tasks:team-detail" pk=team.id %} ">{{ team.name }}</a>
+        </li>
+          <ul>
+            {% for project in team.projects.all %}
+              <li>
+                <a href="{% url "tasks:project-detail" pk=project.id %} ">{{ project.name }}</a>
+                  <br>{{ project.description }}
+              </li>
+            {% endfor %}
+          </ul>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>There are no teams in management service</p>
+  {% endif %}
+
+
+{% endblock %}

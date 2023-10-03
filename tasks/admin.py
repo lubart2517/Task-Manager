@@ -6,6 +6,9 @@ from .models import TaskType, Position, Worker, Team, Project, Task
 @admin.register(Worker)
 class WorkerAdmin(UserAdmin):
     list_display = UserAdmin.list_display + ("position",)
+    fieldsets = UserAdmin.fieldsets + (
+        (("Additional info", {"fields": ("position",)}),)
+    )
 
 
 @admin.register(Position)
@@ -18,4 +21,6 @@ class TaskAdmin(admin.ModelAdmin):
     search_fields = ("workers",)
 
 
-admin.site.register(TaskType, Project, Team)
+admin.site.register(TaskType)
+admin.site.register(Project)
+admin.site.register(Team)

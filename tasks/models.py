@@ -46,6 +46,9 @@ class Team(models.Model):
     name = models.CharField(max_length=255, unique=True)
     teammates = models.ManyToManyField(Worker)
 
+    def __str__(self) -> str:
+        return f"{self.name}"
+
 
 class Project(models.Model):
     name = models.CharField(max_length=255, unique=True)
@@ -55,6 +58,9 @@ class Project(models.Model):
         related_name="projects",
         on_delete=models.CASCADE
     )
+
+    def __str__(self) -> str:
+        return f"{self.name}"
 
 
 class Task(models.Model):
@@ -86,4 +92,4 @@ class Task(models.Model):
     )
 
     def __str__(self) -> str:
-        return str(self.name)
+        return f"{self.name}"
